@@ -117,3 +117,435 @@ while True:
             print("El esfuerzo de hoy es el éxito de mañana.")
         case 4:
             break
+
+## 3)
+
+while True:
+    nombre_operador = input("Por favor ingrese su nombre: ").capitalize()
+    if nombre_operador.isalpha():
+        break
+    else:
+        print("Error: Solo estan permitidas letras.Vuelva a intentarlo")
+
+lunes1 = ""
+lunes2 = ""
+lunes3 = ""
+lunes4 = ""
+
+martes1 = ""
+martes2 = ""
+martes3 = ""
+
+
+while True:
+    print()
+    print("1. Reservar turno")
+    print("2. Cancelar turno")
+    print("3. Ver agenda del dia")
+    print("4. Ver resumen general")
+    print("5. Cerrar sistema")
+    print()
+    while True:
+        opcion = input("Ingrese una opcion: ")
+        if opcion.isdigit():
+            opcion = int(opcion)
+            if opcion <= 5 and opcion > 0:
+                break
+            else:
+                print("Ingrese una opcion entre 1 y 5 ")
+        else:
+            print("Ingrese una de las opciones validas.Vuelva a intentarlo")
+    match opcion: 
+        case 1:
+            while True:
+                print()
+                print ("Seleccione el dia de su turno")
+                print()
+                print ("1. Lunes")
+                print ("2. Martes")
+                print()
+                turno_dia = input("Opcion: ")
+                if turno_dia.isdigit():
+                    turno_dia = int(turno_dia)
+                    if turno_dia == 1 or turno_dia == 2:
+                        break
+                    else:
+                        print("Seleccione una opcion valida.")
+                else:
+                    print("Solo se permiten numeros.")
+            while True:
+                print()
+                nombre_paciente = input("Por favor, ingrese el nombre del paciente: ").capitalize()
+                print()
+                if nombre_paciente.isalpha():
+                    break
+                else:
+                    print("Solo se aceptan letras. Vuelva a intentarlo")
+            if nombre_paciente in lunes1 or nombre_paciente in lunes2 or nombre_paciente in lunes3 or nombre_paciente in lunes4:
+                print("El paciente ya tiene un turno reservado para este dia.")
+            else:
+                if turno_dia == 1:
+                    if lunes1 == "":
+                        lunes1 += (f"Turno 1: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    elif lunes2 == "":
+                        lunes2 += (f"Turno 2: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    elif lunes3 == "":
+                        lunes3 += (f"Turno 3: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    elif lunes4 == "":
+                        lunes4 += (f"Turno 4: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    else:
+                        print("No hay turnos disponibles para el dia Lunes")
+                if turno_dia == 2:
+                    if martes1 == "":
+                        martes1 += (f"Turno 1: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    elif martes2 == "":
+                        martes2 += (f"Turno 2: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    elif martes3 == "":
+                        martes3 += (f"Turno 3: {nombre_paciente} reservo este turno")
+                        print("Turno reservado correctamente")
+                    else:
+                        print("No hay turnos disponibles para el dia Martes")
+        case 2:
+            while True:
+                print()
+                print("Seleccione el dia que quiere cancelar")
+                print("1. Lunes")
+                print("2. Martes")
+                cancelar_turno = input("Opcion: ")
+                if cancelar_turno.isdigit():
+                    cancelar_turno = int(cancelar_turno)
+                    if cancelar_turno == 1 or cancelar_turno ==2:
+                        break
+                    else:
+                        print()
+                        print("Seleccione una opcion valida.")
+                else:
+                    print()
+                    print("Solo se permiten numeros.")
+            while True:
+                print()
+                nombre_cancelacion = input("Por favor, ingrese el nombre del paciente a cancelar el turno: ").capitalize()
+                if nombre_cancelacion.isalpha():
+                    break
+                else:
+                    print()
+                    print("Solo se aceptan letras. Vuelva a intentarlo")
+            if cancelar_turno == 1:
+                if nombre_cancelacion in lunes1:
+                    lunes1 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                elif nombre_cancelacion in lunes2:
+                    lunes2 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                elif nombre_cancelacion in lunes3:
+                    lunes3 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                elif nombre_cancelacion in lunes4:
+                    lunes4 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                else:
+                    print()
+                    print("Usted no tiene un turno agendado.")
+            elif cancelar_turno == 2:
+                if nombre_cancelacion in martes1:
+                    martes1 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                elif nombre_cancelacion in martes2:
+                    martes2 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                elif nombre_cancelacion in martes3:
+                    martes3 = ""
+                    print()
+                    print("Su turno se cancelo exitosamente")
+                else:
+                    print()
+                    print("Usted no tiene un turno agendado.")
+        case 3:
+                print("Seleccione el dia de la agenda que quiere ver.")
+                print("1. Lunes")
+                print("2. Martes")
+                print()
+                while True:
+                    dia_agenda = input("Seleccione el dia: ")
+                    if dia_agenda.isdigit():
+                        dia_agenda = int(dia_agenda)
+                        if dia_agenda == 1 or dia_agenda == 2:
+                            break
+                        else:
+                            print("Ingrese un valor valido")
+                    else:
+                        print("No se permiten letras. Vuelva a intentarlo")
+                if dia_agenda  == 1: 
+                    print("Esta es la agenda del dia Lunes")
+                    if lunes1 == "":
+                        print("Turno 1: libre")
+                    else:
+                        print("Turno 1: reservado")
+                    if lunes2 == "":
+                        print("Turno 2: libre")
+                    else:
+                        print("Turno 2: reservado")
+                    if lunes3 == "":
+                        print("Turno 3: libre")
+                    else:
+                        print("Turno 3: reservado")
+                    if lunes4 == "":
+                        print("Turno 4: libre")
+                    else:
+                        print("Turno 4: reservado")
+                elif dia_agenda == 2: 
+                    print("MARTES")
+                    if martes1 == "":
+                        print("Turno 1: libre")
+                    else:
+                        print("Turno 1: reservado")
+                    if martes2 == "":
+                        print("Turno 2: libre")
+                    else:
+                        print("Turno 2: reservado")
+                    if martes3 == "":
+                        print("Turno 3: libre")
+                    else:
+                        print("Turno 3: reservado")
+        case 4:
+            print("Resumen general")
+            print("\n")
+            print("LUNES")
+            if lunes1 == "":
+                print("Turno 1: Libre")
+            else:
+                print(lunes1)
+            if lunes2 == "":
+                print("Turno 2: Libre")
+            else:
+                print(lunes2)
+            if lunes3 == "":
+                print("Turno 3: Libre")
+            else:
+                print(lunes3)
+            if lunes4 == "":
+                print("Turno 4: Libre")
+            else:
+                print(lunes4)
+            print("\n")
+            print("MARTES")
+            if martes1 == "":
+                print("Turno 1: Libre")
+            else:
+                print(martes1)
+            if martes2 == "":
+                print("Turno 2: Libre")
+            else:
+                print(martes2)
+            if martes3 == "":
+                print("Turno 3: Libre")
+            else:
+                print(martes3)
+            print("\n")
+        case 5:
+            break
+
+## 4) 
+
+import random
+
+energia = 100
+tiempo = 12
+cerraduras_abiertas = 0
+alarma = False
+codigo_parcial = ""
+
+forzar_seguidas = 0
+
+while True:
+    nombre_agente = input("Ingrese su nombre de agente: ")
+    if nombre_agente.isalpha():
+        break
+    else:
+        print("No se permiten numeros ni caracteres especiales. Vuelva a intentarlo")
+
+while True:
+    print()
+    print(f"Agente {nombre_agente}")
+    print()
+    print(f"Energia restante: {energia} - Tiempo restante: {tiempo} - Cerraduras abiertas: {cerraduras_abiertas} - Codigo parcial: {codigo_parcial}")
+    if alarma == True:
+        print()
+        print("La alarma se encuentra activada!")
+        print()
+    if alarma == True and tiempo <= 3 and cerraduras_abiertas < 3:
+        print()
+        print("Su tiempo se agoto!")
+        print("Sistema bloqueado. Fin del juego")
+        break
+    elif cerraduras_abiertas == 3:
+        print()
+        print("Boveda desbloqueada. Has ganado el juego")
+        print()
+        break
+    elif energia <= 0 or tiempo <= 0:
+        if energia <= 0:
+            print("Fin del juego. Tu energia se agoto")
+            break
+        elif tiempo <= 0:
+            print("Fin del juego. Tu tiempo se agoto")
+            break
+    elif forzar_seguidas == 3:
+        alarma = True
+    print()
+    print("Seleccione una de las siguientes acciones")
+    print()
+    print("1. Forzar cerradura (costo: -20 energia y -2 de tiempo)")
+    print("2. Hackear panel (costo: -10 energía, -3 tiempo)")
+    print("3. Descansar")
+    print()
+    opcion = input("Introduzca la accion a realizar: ")
+    if opcion.isdigit():
+        opcion = int(opcion)
+        if opcion <= 3 and opcion > 0:
+            match opcion:
+                case 1:
+                    if energia < 40:
+                        print()
+                        print("Su energia es menor a 40! Riesgo de alarma activado!")
+                        print()
+                        print("Seleccione un numero del 1 al 3")
+                        while True:
+                            numero_energia = input("Ingrese su numero: ")
+                            if numero_energia.isdigit():
+                                numero_energia = int(numero_energia)
+                                if numero_energia <= 3 and numero_energia > 0:
+                                    break
+                                else:
+                                    print("Ingrese un numero del 1 al 3.")
+                            else:
+                                print("Solo se permiten numeros.")
+                        if numero_energia == 3:
+                            alarma = True
+                            print()
+                            print("ALARMA ACTIVADA")
+                        elif alarma == False:
+                            cerraduras_abiertas += 1
+                            energia -= 20 
+                            tiempo -= 2
+                            forzar_seguidas += 1
+                    elif forzar_seguidas >= 2:
+                        alarma = True
+                        print("Muchos intentos de forzar ALARMA ACTIVADA")
+                        energia -= 20 
+                        tiempo -= 2
+                    else:
+                        cerraduras_abiertas += 1
+                        energia -= 20 
+                        tiempo -= 2
+                        forzar_seguidas += 1 
+                case 2:
+                    for i in range(1,5):
+                        print(f"Paso {i}...")
+                        codigo_parcial += random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+                        print(codigo_parcial)
+                    if len(codigo_parcial) >= 8 and cerraduras_abiertas < 3:
+                        cerraduras_abiertas += 1
+                    energia -= 10
+                    tiempo -= 3
+                    forzar_seguidas = 0
+                case 3 :
+                    tiempo -= 1
+                    energia = min(energia + 15, 100)
+                    if alarma == True:
+                        energia -= 10
+                    forzar_seguidas = 0
+        else:
+            print("Error: Introduzca una opcion entre el 1 y el 3")
+    else:
+        print("Error: Solo se aceptan numeros")
+
+## 5)
+
+while True:
+    nombre_gladiador = input("Ingrese el nombre de su gladiador: ")
+    print()
+    if nombre_gladiador.isalpha():
+        break
+    else:
+        print("Error: Solo se permiten letras")
+
+hp_gladiador = 100
+hp_enemigo = 100
+hp_pota = 3
+ataque_pesado = 15
+ataque_enemigo = 12
+turno_gladiador = True
+
+while turno_gladiador:
+    print(f"{nombre_gladiador.upper()} | HP:{hp_gladiador} | Pociones de vida: {hp_pota}")
+    print()
+    print(f"ENEMIGO | HP: {hp_enemigo}")
+    print()
+    if hp_gladiador <= 0 or hp_enemigo <= 0:
+        if hp_enemigo <= 0:
+            print()
+            print(f"¡VICTORIA! {nombre_gladiador} ha ganado la batalla.")
+            turno_gladiador = False
+        else:
+            print()
+            print("DERROTA. Has caído en combate.")
+            turno_gladiador = False
+    else:
+        pass
+        print("1. Ataque pesado ")
+        print("2. Rafaga Veloz")
+        print("3. Curar")
+        print()
+        opcion = input("Ingrese una opcion: ")
+        print()
+        if opcion.isdigit():
+            opcion = int(opcion)
+            if opcion == 1 or opcion == 2 or opcion == 3:
+                pass
+            else:
+                print(" Ingrese una de las opciones validas.")
+        else:
+            print("No estan permitidas letras ni caracteres especiales. Vuelva a intentarlo.")
+        match opcion:
+            case 1:
+                if hp_enemigo < 20:
+                    print()
+                    print("El enemigo se encuentra debilitado. GOLPE CRITICO!")
+                    golpe_critico = ataque_pesado * 1.5
+                    golpe_critico = float(golpe_critico)
+                    hp_enemigo -= golpe_critico
+                    print()
+                    print(f"Atacaste al enemigo por {golpe_critico} puntos de daño")
+                else:
+                    hp_enemigo -= ataque_pesado
+                    print(f"Atacaste al enemigo por {ataque_pesado} puntos de daño")
+            case 2:
+                print()
+                print("Rafaga veloz!")
+                for i in range(1,4):
+                    hp_enemigo -=5
+                    print(f"{i}. Golpe conectado por 5 de daño")
+            case 3:
+                if hp_pota > 0:
+                    hp_gladiador = min(hp_gladiador + 30, 101)
+                    hp_pota -= 1 
+                    print("Bebes una pocion. Tu salud se regenera.")
+                else:
+                    print("¡No quedan pociones!")
+        hp_gladiador -= ataque_enemigo
+        print()
+        print("¡El enemigo te atacó por 12 puntos de daño!")
+        print()
