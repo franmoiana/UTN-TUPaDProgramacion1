@@ -55,3 +55,65 @@ print(f"Total sin descuentos: ${precio_total}")
 print(f"Total con descuentos: ${total_descuento} ")
 print(f"Ahorro: ${ahorro}")
 print(f"Promedio por producto: ${precio_total:.2f}")
+
+# Ejercicio 2)
+
+cont = 0
+intentos = 2
+while cont < 3:
+    user = input("Por favor ingrese su usuario: ")
+    password = input("Por favor ingrese su contraseña: ")
+    if user == "alumno" and password == "python123":
+        print("Log in exitoso.")
+        break
+    else:
+        print (f"Usuario o contraseña incorrecta. Intente nuevamente. Quedan {intentos} intentos restantes ")
+        if intentos == 0:
+            print("Cuenta bloqueada")
+        intentos -= 1
+    cont += 1
+
+
+while True: 
+    print()
+    print("Seleccione una opcion")
+    print()
+    print("1. Ver estado de inscripcion")
+    print("2. Cambiar clave")
+    print("3. Mostrar mensaje motivacional")
+    print("4. Salir")
+    print()
+    opcion = input("Opcion:")
+    while True:
+        if opcion.isdigit():
+            opcion = int(opcion)
+            if opcion <= 4:
+                break
+            else:
+                print("Error: opción fuera de rango.")
+        else:
+            print("Error: ingrese un número válido.")
+    match opcion:
+        case 1:
+            print("Inscripto")
+        case 2:
+            while True:
+                print("\n")
+                print("Su nueva clave debete tener un minimo de 6 caracteres")
+                clave_nueva = input("Ingrese su nueva clave: ")
+                confirmacion_clave = input("Repita su nueva clave: ")
+                if clave_nueva == confirmacion_clave:
+                    if len(clave_nueva) < 6:
+                        print()
+                        print("Error: clave demasiado corta.")
+                    else:
+                        print()
+                        print("Clave moficada con exito!")
+                        break
+                else:
+                    print()
+                    print("Error: las claves no coinciden.")
+        case 3:
+            print("El esfuerzo de hoy es el éxito de mañana.")
+        case 4:
+            break
