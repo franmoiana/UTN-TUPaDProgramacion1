@@ -1,0 +1,57 @@
+#Ejercicio 1)
+
+while True:
+    nombre = input("Por favor ingrese su nombre: ")
+    if nombre.isalpha():
+        break
+    print("Error, el nombre solo puede contener letras. Intente nuevamente.")
+
+
+while True:
+    cantidad = input("Ingrese la cantidad: ")
+    if cantidad.isdigit():
+        cantidad = int(cantidad)    
+        if cantidad > 0 and cantidad <= 3:
+            break
+    print("No se aceptan letras, ni numeros negativos. Intente nuevamente")
+
+total_descuento = 0
+precio_total = 0
+resumen = ""
+for i in range(1,cantidad + 1):
+    while True:
+        precio = input(f"Ingrese el precio {i}: ")
+        if precio.isdigit():
+            precio = int(precio)
+            break
+        else:
+            print("No se aceptan letras.Intente nuevamente.")
+    
+    while True:
+        descuento = input(f"El producto {i} tiene descuento? Ingrese S/N: ")
+        if descuento == "S" or descuento == "s":
+            precio_descuento = precio - (precio * 0.1)
+            total_descuento += precio_descuento
+            break
+        elif descuento == "N" or descuento== "n":
+            precio = precio
+            total_descuento += precio
+            break
+        else:
+            print("Ingrese una de las opciones validas.")
+    precio_total += precio
+    resumen += f"Producto {i} - Precio: {precio} Descuento S/N: {descuento}\n"
+
+ahorro = precio_total - total_descuento
+
+promedio_producto = precio_total / cantidad
+
+promedio_producto = float(promedio_producto)
+
+print(f"Cliente: {nombre}")
+print(f"Cantidad de productos: {cantidad}")
+print(resumen)
+print(f"Total sin descuentos: ${precio_total}")
+print(f"Total con descuentos: ${total_descuento} ")
+print(f"Ahorro: ${ahorro}")
+print(f"Promedio por producto: ${precio_total:.2f}")
