@@ -1,0 +1,299 @@
+# Listas
+
+herramientas = []
+existencias = []
+
+opcion = 0
+
+# Menu general
+
+while opcion != 8:
+    print()
+    print("--- MENÚ ---".center(22))
+    print("1. Cargar herramientas")
+    print("2. Cargar existencias")
+    print("3. Ver inventario")
+    print("4. Consultar stock")
+    print("5. Ver agotados")
+    print("6. Agregar producto")
+    print("7. Actualizar stock")
+    print("8. Salir")
+    print()
+
+    # El usuario selecciona la opción deseada.
+
+    opcion = input("Seleccione una opción: ")
+    print()
+    # ---- Validacion: opcion valida ----
+    if opcion.isdigit():
+        opcion = int(opcion)
+        if opcion < 1 or opcion > 8:
+            print("ERROR: Ingrese una opción válida del menú.")
+            opcion = 0
+    else:
+        print("ERROR: Solo se permiten números. Vuelva a intentarlo.")
+        opcion = 0
+
+    # ---- Menu basado en match case ----
+
+    match opcion:
+        # //////// Cargar herramientas \\\\\\\\
+        case 1:
+            print("¿Qué cantidad de herramientas desea cargar en el sistema?")
+            while True:
+                # ---- Cantidad de productos ----
+                print()
+                cantidad_herramientas = input("Ingrese la cantidad: ")
+                print()
+                # ---- Validacion: numero entero mayor a 0 ----
+                if cantidad_herramientas.isdigit():
+                    cantidad_herramientas = int(cantidad_herramientas)
+                    if cantidad_herramientas > 0:
+                        break
+                    else:
+                        print()
+                        print("ERROR: Ingrese una cantidad mayor a 0.")
+                else:
+                    print("ERROR: Ingrese un valor numérico válido.")
+
+            cont = 0
+            while cont < cantidad_herramientas:
+                # ---- Nombre del producto ----
+                nombre_herramienta = input(f"{len(herramientas)+1}) Ingrese el nombre de la herramienta: ").title()
+                print()
+                # ---- Validacion: nombre no vacio ----
+                nombre_vacio = True
+                for letra in nombre_herramienta:
+                    if letra != " ":
+                        nombre_vacio = False
+                        break
+                if nombre_herramienta == "" or nombre_vacio:
+                    print("ERROR: No se permite ingresar un nombre vacío.")
+                # ---- Validacion: el producto no esta en la lista, entonces se agrega ----
+                elif nombre_herramienta not in herramientas:
+                    herramientas.append(nombre_herramienta)
+                    cont += 1
+                else:
+                    print(f"ERROR: El producto {nombre_herramienta} ya se encuentra en el inventario.")
+            print()
+            print("¡Herramientas ingresadas al inventario de manera exitosa!")
+            # ---- El usuario podría cargar herramientas pero olvidar cargar las existencias, realizar una consulta de stock (opción 4) y el programa se rompería en base a la lógica aplicada.
+            # ---- Para evitarlo, decidí asignar a cada herramienta stock 0 por defecto. ----
+            while len(existencias) < len(herramientas):
+                existencias.append(0)
+            print()
+
+        # //////// Carga de existencias \\\\\\\\
+        case 2:
+            # ---- Validacion: si no hay herramientas en la lista, no ingresar stock ----
+            if herramientas == []:
+                print("ERROR: No hay ningún producto en el inventario. Por favor, realice una carga en el sistema.")
+                print()
+            else:
+                # ---- Se limpia existencias para evitar desfase al recargar stock ----
+                existencias.clear()
+                # ---- Operacion: mostrar el nombre de las herramientas y el stock a ingresar ----
+                for i in range(len(herramientas)):
+                    while True:
+                        ingreso_stock = input(f"Producto: {herramientas[i]} | Stock a ingresar: ")
+                        # ---- Validacion: ingreso no vacio ----
+                        ingreso_vacio = True
+                        for numero in ingreso_stock:
+                            if numero != " ":
+                                ingreso_vacio = False
+                                break
+                        if ingreso_stock == "" or ingreso_vacio:
+                            print("ERROR: No está permitido ingresar stock vacío.")
+                        elif not ingreso_stock.isdigit():
+                            print("ERROR: No se permiten letras ni símbolos. Ingrese un valor numérico válido.")
+                        else:
+                            ingreso_stock = int(ingreso_stock)
+                            existencias.append(ingreso_stock)
+                            break
+                print()
+                print("¡Carga de stock exitosa!")
+
+        # //////// Visualizacion de inventario \\\\\\\\
+        case 3:
+            # ---- Verifico que haya productos en la lista ----
+            if herramientas == []:
+                print("ERROR: No hay ningún producto en el inventario. Por favor, realice una carga en el sistema.")
+                print()
+            else:
+                print()
+                print("---- Stock actual del inventario ----")
+                print()
+                # ---- Muestro stock ----
+                for i in range(len(herramientas)):
+                    print(f"Producto: {herramientas[i]} | Stock: {existencias[i]}")
+
+        # //////// Consultar stock \\\\\\\\
+        case 4:
+            # ---- Verifico que haya productos en la lista ----
+            if herramientas == []:
+                print("ERROR: No hay ningún producto en el inventario. Por favor, realice una carga en el sistema.")
+                print()
+            else:   
+                while True:
+                    buscar_articulo = input("Ingrese el producto que desea buscar: ").title()
+                    print()
+                    # ---- Validacion: busqueda no vacia ----
+                    buscar_vacio = True
+                    for vacio in buscar_articulo:
+                        if vacio != " ":
+                            buscar_vacio = False
+                            break
+                    if buscar_articulo == "" or buscar_vacio:
+                        print("ERROR: No está permitido realizar búsquedas sin ingresar el nombre del producto.")
+                        print()
+                    else:
+                        # ---- Muestro el stock segun el producto ingresado ----
+                        if buscar_articulo in herramientas:
+                            indice = herramientas.index(buscar_articulo)
+                            print(f"Producto: [{buscar_articulo}] | Stock: [{existencias[indice]}]")
+                            print()
+                            break
+                        else:
+                            print("El producto no se encuentra en la lista.")
+                            print()
+
+        # //////// Ver productos agotados \\\\\\\\
+        case 5:
+            # ---- Verifico que haya productos en la lista ----
+            if herramientas == []:
+                print("ERROR: No hay ningún producto en el inventario. Por favor, realice una carga en el sistema.")
+                print()
+            else:
+                hay_agotados = False
+                for i in range(len(existencias)):
+                    if existencias[i] == 0:
+                        hay_agotados = True
+                # ---- Se muestra el título solamente si hay productos sin stock ----
+                if hay_agotados:
+                    print("---- Productos Agotados ----")
+                    for i in range(len(existencias)):
+                        if existencias[i] == 0:
+                            print(f"Producto: {herramientas[i]} | Stock: {existencias[i]}")
+                # ---- En caso de que no haya agotados, se muestra un mensaje informando dicho caso ----
+                else:
+                    print("No hay productos agotados.")
+
+        # //////// Alta de Nuevo Producto \\\\\\\\
+        case 6:
+            print("---- Alta Nuevo Producto ----")
+            print()
+            # ---- Operacion: se ingresa el nombre del nuevo producto ----
+            nuevo_producto = input("Nombre del producto: ").title()
+            print()
+            # ---- Validacion: nombre no vacio ----
+            producto_vacio = True
+            for vacio in nuevo_producto:
+                if vacio != " ":
+                    producto_vacio = False
+                    break
+            if nuevo_producto == "" or producto_vacio:
+                print("ERROR: No se aceptan nombres vacíos. Vuelva a intentarlo.")
+                print()
+            # ---- Validacion: no ingresar un producto que ya esta en la lista ----
+            elif nuevo_producto in herramientas:
+                print(f"ERROR: El producto [{nuevo_producto}] ya se encuentra en el inventario.")
+                print()
+            # ---- Operacion: ingreso de stock luego de la validacion ----
+            else:
+                stock_nuevo_producto = input("Unidades del producto: ")
+                print()
+                # ---- Validacion: que sea un numero mayor o igual a 0 ----
+                if stock_nuevo_producto.isdigit():
+                    stock_nuevo_producto = int(stock_nuevo_producto)
+                    if stock_nuevo_producto >= 0:
+                        # ---- Operacion: se agrega producto y stock luego de las validaciones ----
+                        herramientas.append(nuevo_producto)
+                        existencias.append(stock_nuevo_producto)
+                        print("Se agregó el producto correctamente.")
+                        print()
+                    else:
+                        print("ERROR: Las unidades deben ser mayores o iguales a 0.")
+                        print()
+                else:
+                    print("ERROR: Solo se permite ingresar números enteros.")
+                    print()
+
+        # //////// Actualizar Stock (venta o ingreso) \\\\\\\\
+        case 7:
+            # ---- Verifico que haya productos en la lista ----
+            if herramientas == []:
+                print("ERROR: No hay ningún producto en el inventario. Por favor, realice una carga en el sistema.")
+                print()
+            else:
+                # ---- Busqueda del producto ----
+                producto_actualizado = input("Ingrese el nombre del producto al cual quiera actualizar el stock: ").title()
+                # ---- Validacion: nombre no vacio ----
+                producto_actualizado_vacio = True
+                for vacio in producto_actualizado:
+                    if vacio != " ":
+                        producto_actualizado_vacio = False
+                        break
+                if producto_actualizado == "" or producto_actualizado_vacio:
+                    print("ERROR: No se pueden ingresar nombres de productos vacíos.")
+                else:
+                    # ---- Validacion: producto existente en lista ----
+                    if producto_actualizado in herramientas:
+                        indice = herramientas.index(producto_actualizado)
+                        print()
+                        print("¿Es una venta o un ingreso?")
+                        print()
+                        print("1. Venta")
+                        print("2. Ingreso")
+                        print()
+                        sub_opcion = input("Opción: ")
+                        print()
+                        # ---- Submenu: venta o ingreso ----
+                        if sub_opcion.isdigit():
+                            sub_opcion = int(sub_opcion)
+                            # ---- Operacion: suma o resta de stock ----
+                            if sub_opcion == 1:
+                                restar_stock = input("Ingrese las unidades vendidas: ")
+                                print()
+                                # ---- Validacion: numero positivo ----
+                                if restar_stock.isdigit():
+                                    restar_stock = int(restar_stock)
+                                    if restar_stock > 0:
+                                        if existencias[indice] - restar_stock >= 0:
+                                            existencias[indice] -= restar_stock
+                                            print("¡Stock actualizado!")
+                                            print()
+                                        else:
+                                            print("ERROR: El stock existente no es suficiente para realizar la venta.")
+                                            print()
+                                            print(f"Producto: {producto_actualizado} | Stock: {existencias[indice]}")
+                                            print()
+                                    else:
+                                        print("ERROR: Ingrese un número positivo.")
+                                else:
+                                    print("ERROR: Solo se permiten números.")
+                            elif sub_opcion == 2:
+                                print()
+                                sumar_stock = input("Ingrese la cantidad de unidades que ingresan: ")
+                                print()
+                                # ---- Validacion: numero positivo ----
+                                if sumar_stock.isdigit():
+                                    sumar_stock = int(sumar_stock)
+                                    if sumar_stock > 0:
+                                        existencias[indice] += sumar_stock
+                                        print("¡Stock actualizado!")
+                                        print()
+                                    else:
+                                        print("ERROR: Ingrese un número positivo.")
+                                else:
+                                    print("ERROR: Solo se permiten números.")
+                            else:
+                                print("ERROR: Ingrese la opción 1 o 2.")
+                        else:
+                            print("ERROR: Ingrese la opción 1 o 2.")
+                    else:
+                        print("ERROR: El producto no se encuentra en la lista.")
+
+        # //////// Salir \\\\\\\\
+        case 8:
+            print("Saliendo...")
+            print()
