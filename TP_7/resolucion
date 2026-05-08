@@ -1,0 +1,309 @@
+# # 1) Dado el diccionario precios_frutas
+# # precios_frutas = {'Banana': 1200, 'Ananá': 2500, 'Melón': 3000, 'Uva':
+# # 1450}
+# # Añadir las siguientes frutas con sus respectivos precios:
+# # ● Naranja = 1200
+# # ● Manzana = 1500
+# # ● Pera = 2300
+
+# precios_frutas = {'Banana' : 1200, 'Anana' : 2500, 'Melon' : 3000, 'Uva' : 1450}
+
+# precios_frutas.update({"Naranja" : 1200, "Manzana" : 1500, "Pera" : 2300})
+
+# print(precios_frutas)
+
+# # 2) Siguiendo con el diccionario precios_frutas que resulta luego de ejecutar el código
+# # desarrollado en el punto anterior, actualizar los precios de las siguientes frutas:
+# # ● Banana = 1330
+# # ● Manzana = 1700
+# # ● Melón = 2800
+# print()
+# print("---- Precios actualizados ----")
+
+# precios_frutas['Banana'] = 1330
+# precios_frutas['Manzana'] = 1700
+# precios_frutas['Melon'] = 2800
+
+# print(precios_frutas)
+
+
+# # 3) Siguiendo con el diccionario precios_frutas que resulta luego de ejecutar el código
+# # desarrollado en el punto anterior, crear una lista que contenga únicamente las frutas sin los
+# # precios.
+# print()
+# print("---- Lista de frutras ----")
+
+# frutas = precios_frutas.keys()
+# lista_frutas = list(frutas)
+
+# for fruta in lista_frutas:
+#     print(fruta)
+
+
+# 4) Escribí un programa que permita almacenar y consultar números telefónicos.
+# • Permití al usuario cargar 5 contactos con su nombre como clave y número como valor.
+# • Luego, pedí un nombre y mostrale el número asociado, si existe. 
+
+# contactos = {}
+
+# print("---- Carga de contactos ----")
+
+# for i in range(1,6):
+#     while True:
+#         nombre = input(f"Ingrese el nombre del contacto numero {i}: ").title()
+#         if nombre != "" and nombre != " " and nombre not in contactos:
+#             break
+#         elif nombre in contactos:
+#             print("Ese contacto ya existe, ingrese un nombre diferente")
+#         else:
+#             print("No se permiten nombres vacios")
+#     while True:
+#         numero = input(f"Ingrese el numero telefonico de {nombre}: ")
+#         if numero.isdigit():
+#             break
+#         else:
+#             print("Solo se permiten numeros")
+
+#     contactos[nombre]=numero
+
+# print("---- Busqueda de contacto ----")
+# print()
+# solicitar_nombre = input("Ingrese el nombre del contacto para saber su numero telefonico: ").title()
+
+# while True:
+#     if solicitar_nombre in contactos:
+#         print(f"El numero telefonico de {solicitar_nombre} es: {contactos[solicitar_nombre]}")
+#         break
+#     else:
+#         print("El nombre ingresado no se encuentra dentro de la lista de contactos.")
+
+# 5) Solicita al usuario una frase e imprime:
+# • Las palabras únicas (usando un set).
+# • Un diccionario con la cantidad de veces que aparece cada palabra. 
+
+# frase = input("Ingrese una frase: ")
+
+# palabras = frase.split()
+
+# palabras_unicas = set(palabras)
+
+# conteo_palabras = {}
+# for i in palabras:
+#     if i in conteo_palabras:
+#         conteo_palabras[i] += 1
+#     else:
+#         conteo_palabras[i] = 1
+# print()
+# print(f"Palabras unicas: {palabras_unicas}")
+# print()
+# print(f"Conteo palabras: {conteo_palabras}")
+
+# 6) Permití ingresar los nombres de 3 alumnos, y para cada uno una tupla de 3 notas. Luego,
+# mostrá el promedio de cada alumno. 
+
+# alumnos = {}
+
+# for i in range(3):
+
+#     while True:
+#         nombre = input("Ingrese el nombre del alumno: ").title()
+#         if nombre not in alumnos:
+#             break
+#         else:
+#             print("El nombre ingresado ya se encuentra en el registro.")
+    
+#     notas = []
+    
+#     for j in range(1, 4):
+#         while True:
+#             nota = input(f"{j}) Ingrese la nota de {nombre}: ")
+#             if nota.isdigit():
+#                 nota = int(nota)
+#                 if 1 <= nota <= 10:
+#                     notas.append(nota)
+#                     break
+#                 else:
+#                     print("La nota debe estar entre 1 y 10.")
+#             else:
+#                 print("Solo se permiten números.")
+    
+#     alumnos[nombre] = tuple(notas)
+
+# # Mostrar promedios
+# for nombre, notas in alumnos.items():
+#     promedio = sum(notas) / len(notas)
+#     print(f"{nombre} tiene un promedio de {promedio:.2f}")
+
+
+# 7) Se recibe el registro diario de asistencia a una capacitación en forma de lista.
+# En dicha lista pueden aparecer nombres repetidos, ya que una misma persona pudo haber
+# asistido en más de una jornada.
+# • Mostrá la lista original de asistencias.
+# • Generá un conjunto (set) a partir de la lista y mostrar los empleados que asistieron al
+# menos una vez (sin repetir nombres).
+# • Indicá cuántas veces asistió cada empleado a la capacitación.
+
+# asistencias_capacitacion = ["Ana", "Luis", "Jorge", "Pedro", "Maria", "Ana", "Raul", "Luis", "Marta"]
+
+# print(f"Esta es la lista original de asistencias: {asistencias_capacitacion}")
+# print()
+# asistencias_unicas = set(asistencias_capacitacion)
+# print(f"Estos son los empleados que asistieron al menos una vez: {asistencias_unicas}")
+
+# conteo_asistencias = {}
+# for i in asistencias_capacitacion:
+#     if i in conteo_asistencias:
+#         conteo_asistencias[i] += 1
+#     else:
+#         conteo_asistencias[i] = 1
+
+# print(f"Conteo de asistencias: {conteo_asistencias}")
+
+# 8) Armá un diccionario donde las claves sean nombres de productos y los valores su stock.
+# Permití al usuario:
+# • Consultar el stock de un producto ingresado.
+# • Agregar unidades al stock si el producto ya existe.
+# • Agregar un nuevo producto si no existe. 
+
+# inventario = {'Llave allen' : 5, 'Martillo' : 4, 'Serrucho' : 10, 'Destornillador Plano' : 3, 'Manguera' : 4}
+
+# opcion = 0
+
+# while opcion != 4:
+#     print("1. Consulta de stock")
+#     print()
+#     print("2. Agregar unidades a producto existente")
+#     print()
+#     print("3. Agregar un nuevo producto")
+#     print()
+#     print("4. Salir")
+#     print()
+
+#     opcion = input("Ingrese la accion que desea realizar: ")
+#     if opcion.isdigit():
+#         opcion = int(opcion)
+#         if opcion < 1 or opcion > 4:
+#             print("ERROR: Ingrese una opción válida del menú.")
+#             opcion = 0
+#     else:
+#         print("ERROR: Solo se permiten números. Vuelva a intentarlo.")
+#         opcion = 0
+
+#     match opcion:
+#         case 1:
+#             print()
+#             print("---- Consulta de stock ----")
+#             print()
+#             consulta_stock = input("Ingrese el nombre del articulo: ").title()
+#             print()
+#             if consulta_stock in inventario:
+#                 print(f"El stock del articulo {consulta_stock} es {inventario[consulta_stock]}")
+#                 print()
+#             else:
+#                 print("El articulo no se encuentra en el inventario.")
+#                 print()
+#         case 2:
+#             print()
+#             print("---- Agregar stock ----")
+#             print()
+#             agregar_stock = input("Ingrese el nombre del articulo que desea sumar stock: ").title()
+#             print()
+#             if agregar_stock in inventario:
+#                 while True:
+#                     agregar_cantidad = input("Cuantas unidades desea agregar?: ")
+#                     ingreso_vacio = True
+#                     for numero in agregar_cantidad:
+#                         if numero != " ":
+#                             ingreso_vacio = False
+#                             break
+#                     if agregar_cantidad == "" or ingreso_vacio:
+#                         print("ERROR: No está permitido ingresar stock vacío.")
+#                     elif not agregar_cantidad.isdigit():
+#                         print("ERROR: No se permiten letras ni símbolos. Ingrese un valor numérico válido.")
+#                     else:
+#                         agregar_cantidad = int(agregar_cantidad)
+#                         inventario[agregar_stock] += agregar_cantidad
+#                         print("Stock ingresado exitosamente")
+#                         print()
+#                         break
+#             else:
+#                 print("El articulo no se encuentra en el inventario.")
+#                 print()
+#         case 3:
+#             print()
+#             print("---- Agregar nuevo producto ----")
+#             print()
+#             nuevo_articulo = input("Ingrese el nombre del nuevo articulo: ").title()
+#             print()
+            
+#             if nuevo_articulo not in inventario:
+#                 while True:
+#                     cantidad = input("Ingrese el stock inicial: ")
+                    
+#                     ingreso_vacio = True
+#                     for numero in cantidad:
+#                         if numero != " ":
+#                             ingreso_vacio = False
+#                             break
+#                     if cantidad == "" or ingreso_vacio:
+#                         print("ERROR: No está permitido ingresar stock vacío.")
+#                     elif not cantidad.isdigit():
+#                         print("ERROR: Ingrese un número válido.")
+#                     else:
+#                         inventario[nuevo_articulo] = int(cantidad)
+#                         print("Articulo ingresado de forma exitosa.")
+#                         print()
+#                         break
+#             else:
+#                 print("El articulo ya se encuentra en el inventario")
+#         case 4:
+#             print("Saliendo...")
+
+# 9) Creá una agenda donde las claves sean tuplas de (día, hora) y los valores sean eventos.
+# Permití consultar qué actividad hay en cierto día y hora. 
+# print()
+# print("---- Consulta de actividades ----")
+# print()
+# agenda = {
+#     ("Lunes", "18:00"): "Danza",
+#     ("Martes", "17:00"): "Boxeo",
+#     ("Miercoles", "20:00"): "Tenis",
+#     ("Jueves", "20:00"): "Padel",
+#     ("Viernes", "18:00"): "Natacion"
+# }
+
+# dia = input("Ingrese el día: ").title()
+# hora = input("Ingrese la hora en formato 24hs (HH:MM): ")
+
+# consulta = (dia, hora)
+
+# if consulta in agenda:
+#     print(f"La actividad es: {agenda[consulta]}")
+# else:
+#     print("No hay actividad en ese día y horario.")
+
+# 10) Dado un diccionario que mapea nombres de países con sus capitales, construí un nuevo
+# diccionario donde:
+# • Las capitales sean las claves.
+# • Los países sean los valores. 
+
+print()
+print("---- Original ----")
+print()
+original = {
+    "Argentina": "Buenos Aires",
+    "Brasil": "Brasilia",
+    "Chile": "Santiago",
+    "Uruguay": "Montevideo"
+}
+
+print(original)
+print()
+print("---- Invertido ----")
+print()
+invertido = {}
+
+for pais, capital in original.items():
+    invertido[capital] = pais
+
+print(invertido)

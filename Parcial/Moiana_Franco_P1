@@ -69,6 +69,7 @@ while opcion != 8:
                         break
                 if nombre_herramienta == "" or nombre_vacio:
                     print("ERROR: No se permite ingresar un nombre vacío.")
+                    print()
                 # ---- Validacion: el producto no esta en la lista, entonces se agrega ----
                 elif nombre_herramienta not in herramientas:
                     herramientas.append(nombre_herramienta)
