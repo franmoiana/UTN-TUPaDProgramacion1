@@ -1,0 +1,121 @@
+# 1) Identifica los errores del código usando comentarios (#) en las líneas afectadas. Indica el tipo
+# de error y una breve explicación de por qué ocurre.
+# Ejemplo: c = a / b # Error: TypeError. 'b' es un string y no permite la división[cite: 14].
+a = 10
+b = input("Introduce un número: ")
+result = a / b # Error: TypeError. 'b' es un string y no permite la división
+print(f"Resultado: {result}")
+numbers = [1, 2, 3]
+print(numbers[5]) # Error: IndexError. La posicion ingresada para la lista no existe.
+
+# 2) Utilizando el código del ejercicio 1, arreglar los errores para que la ejecución del programa
+# sea correcta sin necesidad de usar excepciones.
+
+a = 10
+b = input("Introduce un número: ")
+result = a / int(b)
+print(f"Resultado: {result}")
+numbers = [1, 2, 3]
+print(numbers[1])
+
+# 3) Utilizando el código del ejercicio 1, mantener el código con los errores originales e incluir
+# bloquestry-except para que la ejecución del programa no se frene al encontrar los errores.
+
+try:
+    a = 10
+    b = input("Introduce un número: ")
+    result = a / b
+    print(f"Resultado: {result}")
+except Exception:
+    print("Error: no se puede realizar la operacion. Vuelva a intentarlo.")
+
+try:
+    numbers = [1, 2, 3]
+    print(numbers[5])
+except Exception:
+    print("Error, vuelva a intentarlo.")
+
+# 4) Repetir el ejercicio 3, pero usando excepciones múltiples que hagan alusión a los tipos de
+# errores detectados.
+
+try:
+    a = 10
+    b = input("Introduce un número: ")
+    result = a / b
+    print(f"Resultado: {result}")
+except TypeError:
+    print("TypeError: no se puede dividir un string con un entero. Vuelva a intentarlo.")
+except ZeroDivisionError:
+    print("ZeroDivisionError: No se puede dividir el numero por 0. Vuelva a intentarlo.")
+except Exception as e:
+    print("Ocurrio el siguiente error: ", type(e).__name__ )
+
+try:
+    numbers = [1, 2, 3]
+    print(numbers[5])
+except IndexError:
+    print("IndexError: La posicion no existe en el indice de la lista. Vuelva a intentarlo")
+except Exception as e:
+    print("Ocurrio el siguiente error: ", type(e).__name__ ) 
+
+
+
+# 5) Repetir el ejercicio 4, pero esta vez incluyendo bloques else y finally.
+try:
+    a = 10
+    b = input("Introduce un número: ")
+    result = a / b
+    print(f"Resultado: {result}")
+except TypeError:
+    print("TypeError: no se puede dividir un string con un entero. Vuelva a intentarlo.")
+except ZeroDivisionError:
+    print("ZeroDivisionError: No se puede dividir el numero por 0. Vuelva a intentarlo.")
+except Exception as e:
+    print("Ocurrio el siguiente error: ", type(e).__name__ )
+else:
+    print("Operacion matematica realizada con exito")
+finally:
+    print("Fin del bucle")
+
+try:
+    numbers = [1, 2, 3]
+    print(numbers[5])
+except IndexError:
+    print("IndexError: La posicion no existe en el indice de la lista. Vuelva a intentarlo")
+except Exception as e:
+    print("Ocurrio el siguiente error: ", type(e).__name__ )
+else:
+    print("Posicion encontrada en la lista con exito")
+finally:
+    print("Fin del bucle")
+
+# 6) Escribir un programa que pida al usuario un número, y:
+# ● Si el valor ingresado es válido, lo imprima por pantalla.
+# ● Si el valor ingresado no es numérico, imprima por pantalla “Debe ingresar un número
+# válido”.
+# ● Si contiene algún otro tipo de error, imprima por pantalla “Se produjo un error
+# inesperado” junto con el error que surgió.
+try:
+    numero = int(input("Por favor ingrese un numero: "))
+    print(numero)
+except ValueError:
+    print("Debe ingresar un número válido")
+except Exception as e:
+    print("Se produjo un error inesperado: ", type(e).__name__ )
+
+
+
+
+# 7) Repetir el ejercicio 6, pero añadiendo la posibilidad de que el usuario intente ingresar un
+# nuevo número luego de encontrar un error.
+
+while True:
+    try:
+        numero = int(input("Por favor ingrese un numero: "))
+        print(numero)
+        print("Operacion realizada de manera exitosa.")
+        break
+    except ValueError:
+        print("Debe ingresar un número válido")
+    except Exception as e:
+        print("Se produjo un error inesperado: ", type(e).__name__ )
